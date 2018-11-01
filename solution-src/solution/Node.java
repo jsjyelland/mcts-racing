@@ -1,6 +1,7 @@
 package solution;
 
 import java.util.ArrayList;
+
 import problem.Action;
 import simulator.State;
 
@@ -35,8 +36,9 @@ public class Node {
     }
 
     /**
-     * Called when backpropagating. Result is either 0 or 1
-     * (corresponding to loss / win from this node).
+     * Called when backpropagating. Result is either 0 or 1 (corresponding to
+     * loss / win from this node).
+     *
      * @param result the result of a random playout from this node, 0 or 1.
      */
     public void addVisit(int result) {
@@ -68,4 +70,22 @@ public class Node {
         return wins;
     }
 
+    /**
+     * Get the child node with a specified state and action.
+     *
+     * @param state the state
+     * @param action the action
+     *
+     * @return the child node if the state and action match, or null if none
+     * exists
+     */
+    public Node childWithStateAction(State state, Action action) {
+        for (Node child : childNodes) {
+            if (child.getState().equals(state) && child.getParentAction().equals(action)) {
+                return child;
+            }
+        }
+
+        return null;
+    }
 }

@@ -1,15 +1,12 @@
 package solution;
 
-import problem.Action;
-import problem.ProblemSpec;
+import problem.*;
+import simulator.Simulator;
 import simulator.State;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MCTS {
-
     private ProblemSpec problemSpec;
 
     private Node root;
@@ -19,6 +16,8 @@ public class MCTS {
 
     // All possible actions given this problemSpec
     private ArrayList<Action> validActionsDiscretized;
+
+    private static final int FUEL_DISCRETE_INTERVALS = 6;
 
     /**
      * Initialize the MCTS search object with all required information, and
@@ -61,8 +60,37 @@ public class MCTS {
      * Decision policy for exploration, returns new leaf Node.
      */
     private Node selectAndExpandNewNode() {
-        // TODO
+        Node node = root;
+        while (node.getState().getPos() < problemSpec.getN()) {
+            Action action = selectBestAction(node);
+            State newState = simulateNextState(node.getState(), action);
+            Node child = node.childWithStateAction(newState, action);
+
+            if (child == null) {
+                Node newNode = new Node(newState);
+                newNode.setParentNodeAndAction(node, action);
+                node.addChildNode(newNode);
+
+                return newNode;
+            }
+
+            node = child;
+        }
+
         return new Node(null);
+    }
+
+    private State simulateNextState(State currentState, Action action) {
+        return null;
+    }
+
+    /*
+     * Select the best action to perform on a node using the UCT (Upper
+     * confidence bound for trees) method.
+     */
+    private Action selectBestAction(Node node) {
+        // TODO
+        return null;
     }
 
     /*
@@ -133,7 +161,83 @@ public class MCTS {
      * Creates the list of valid actions (discretized) from the problem spec.
      */
     private void makeValidActionsDiscretized() {
-        // TODO
         validActionsDiscretized = new ArrayList<>();
+
+        List<ActionType> actionTypes = problemSpec.getLevel().getAvailableActions();
+
+        List<TirePressure> tirePressures = Arrays.asList(
+                TirePressure.FIFTY_PERCENT,
+                TirePressure.SEVENTY_FIVE_PERCENT,
+                TirePressure.ONE_HUNDRED_PERCENT
+        );
+
+        List<Integer> fuelLevels = new ArrayList<>();
+        int fuelInterval = ProblemSpec.FUEL_MAX / FUEL_DISCRETE_INTERVALS;
+
+        for (int i = 0; i < FUEL_DISCRETE_INTERVALS; i++) {
+            fuelLevels.add(fuelInterval * i);
+        }
+
+        for (ActionType actionType : actionTypes) {
+            switch(actionType.getActionNo()) {
+                case 1:
+                    validActionsDiscretized.add(new Action(actionType));
+                    break;
+
+                case 2:
+                    for (String car : problemSpec.getCarOrder()) {
+                        validActionsDiscretized.add(new Action(actionType, car));
+                    }
+
+                    break;
+
+                case 3:
+                    for (String driver : problemSpec.getDriverOrder()) {
+                        validActionsDiscretized.add(new Action(actionType, driver));
+                    }
+
+                    break;
+
+                case 4:
+                    for (Tire tire : problemSpec.getTireOrder()) {
+                        validActionsDiscretized.add(new Action(actionType, tire));
+                    }
+
+                    break;
+
+                case 5:
+                    for (int fuel : fuelLevels) {
+                        validActionsDiscretized.add(new Action(actionType, fuel));
+                    }
+
+                    break;
+
+                case 6:
+                    for (TirePressure pressure : tirePressures) {
+                        validActionsDiscretized.add(new Action(actionType, pressure));
+                    }
+
+                    break;
+                case 7:
+                    for (String car : problemSpec.getCarOrder()) {
+                        for (String driver : problemSpec.getDriverOrder()) {
+                            validActionsDiscretized.add(new Action(actionType, car, driver));
+                        }
+                    }
+
+                    break;
+
+                case 8:
+                    for (TirePressure pressure : tirePressures) {
+                        for (int fuel : fuelLevels) {
+                            for (Tire tire : problemSpec.getTireOrder()) {
+                                validActionsDiscretized.add(new Action(actionType, tire, fuel, pressure));
+                            }
+                        }
+                    }
+
+                    break;
+            }
+        }
     }
 }
