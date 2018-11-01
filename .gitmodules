@@ -1,0 +1,3 @@
+[submodule "supportcode"]
+	path = supportcode
+	url = https://gitlab.com/3702-2018/assignment-2.git
