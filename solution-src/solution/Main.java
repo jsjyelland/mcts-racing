@@ -31,9 +31,10 @@ public class Main {
 
         Simulator sim = new Simulator(ps, outputFile);
         State state = sim.reset();
+        int stepsDone = 0;
 
         while (state != null) {
-            MCTS mcts = new MCTS(ps, state,
+            MCTS mcts = new MCTS(ps, state, stepsDone,
                     timeLimit - STEP_TIME_BUFFER);
             Action action = mcts.getBestAction();
             state = sim.step(action);
@@ -41,6 +42,7 @@ public class Main {
                 System.out.println("Simulation successful.");
                 break;
             }
+            stepsDone++;
         }
 
         if (state == null) {

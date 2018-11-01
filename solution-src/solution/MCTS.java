@@ -1,15 +1,20 @@
 package solution;
 
-import problem.*;
-import simulator.Simulator;
+import problem.Action;
+import problem.ProblemSpec;
 import simulator.State;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class MCTS {
     private ProblemSpec problemSpec;
 
     private Node root;
+
+    private int stepsDone;
 
     // The time limit to search for each action.
     private int timeLimit;
@@ -24,12 +29,15 @@ public class MCTS {
      * create the list of possible actions
      * @param problemSpec The specification of the current problem
      * @param startState The start state of this search
+     * @param stepsDone The amount of steps done so far
      * @param timeLimit How long is allocated to this search per action. This
      *                  search will actually take just slightly longer than this
      */
-    public MCTS(ProblemSpec problemSpec, State startState, int timeLimit) {
+    public MCTS(ProblemSpec problemSpec, State startState, int stepsDone,
+                int timeLimit) {
         this.problemSpec = problemSpec;
         this.root = new Node(startState);
+        this.stepsDone = stepsDone;
         this.timeLimit = timeLimit;
         makeValidActionsDiscretized();
     }
@@ -98,8 +106,22 @@ public class MCTS {
      * is a win, otherwise 0.
      */
     private int simulateRandomPlayout(Node node) {
-        // TODO
-        return 0;
+        int stepCounter = 0;
+        State playoutState = node.getState().copyState();
+        FromStateSimulator FSS = new FromStateSimulator(problemSpec);
+        FSS.setStartState(playoutState, stepsDone);
+        int status = FromStateSimulator.IN_PROGRESS;
+        while (status == FromStateSimulator.IN_PROGRESS) {
+            int actionIndex = randomInt(0, validActionsDiscretized.size());
+            Action action = validActionsDiscretized.get(actionIndex);
+            status = FSS.step(action);
+        }
+        if (status == FromStateSimulator.WIN) {
+            return 1;
+        } else {
+            // The simulation was a loss
+            return 0;
+        }
     }
 
     /*
@@ -239,5 +261,15 @@ public class MCTS {
                     break;
             }
         }
+    }
+
+    private static int randomInt(int min, int max) {
+
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min)) + min;
     }
 }
