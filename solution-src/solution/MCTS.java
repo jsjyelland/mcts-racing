@@ -79,7 +79,10 @@ public class MCTS {
      * node Node to the root node.
      */
     private void backPropagate(Node node, int playoutResult) {
-        // TODO
+        while (node != null) {
+            node.addVisit(playoutResult);
+            node = node.getParentNode();
+        }
     }
 
     /*
