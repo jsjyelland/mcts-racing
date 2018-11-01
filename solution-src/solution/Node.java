@@ -1,3 +1,5 @@
+package solution;
+
 import java.util.ArrayList;
 import problem.Action;
 import simulator.State;
