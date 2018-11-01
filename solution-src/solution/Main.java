@@ -19,6 +19,12 @@ public class Main {
         String inputFile = args[0];
         String outputFile = args[1];
 
+        int timeLimit = STEP_TIME_LIMIT;
+        // Optional third argument, a different step time limit (in millis)
+        if (args.length > 2) {
+            timeLimit = Integer.parseInt(args[2]);
+        }
+
         ProblemSpec ps = new ProblemSpec(inputFile);
 
         System.out.println(ps.toString());
@@ -28,7 +34,7 @@ public class Main {
 
         while (state != null) {
             MCTS mcts = new MCTS(ps, state,
-                    STEP_TIME_LIMIT - STEP_TIME_BUFFER);
+                    timeLimit - STEP_TIME_BUFFER);
             Action action = mcts.getBestAction();
             state = sim.step(action);
             if (sim.isGoalState(state)) {
