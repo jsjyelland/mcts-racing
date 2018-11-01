@@ -69,6 +69,13 @@ public class FromStateSimulator {
             return LOSS;
         }
 
+        if (isGoalState(currentState)) {
+            if (verbose) {
+                System.out.println("Goal reached after " + steps + " steps.");
+            }
+            return WIN;
+        }
+
         if (verbose) {
             System.out.println("Step " + steps +": performing A"
                     + a.getActionType().getActionNo());
@@ -472,5 +479,9 @@ public class FromStateSimulator {
      */
     public int getSteps() {
         return steps;
+    }
+
+    public State getCurrentState() {
+        return currentState;
     }
 }

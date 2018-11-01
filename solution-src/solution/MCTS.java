@@ -32,7 +32,7 @@ public class MCTS {
     public MCTS(ProblemSpec problemSpec, State startState, int stepsDone,
                 int timeLimit) {
         this.problemSpec = problemSpec;
-        this.root = new Node(startState);
+        this.root = new Node(startState, 0);
         this.stepsDone = stepsDone;
         this.timeLimit = timeLimit;
         makeValidActionsDiscretized();
@@ -67,11 +67,16 @@ public class MCTS {
         Node node = root;
         while (node.getState().getPos() < problemSpec.getN()) {
             Action action = selectBestAction(node);
-            State newState = simulateNextState(node.getState(), action);
+            // Simulate a single action
+            FromStateSimulator FSS = new FromStateSimulator(problemSpec);
+            FSS.setStartState(node.getState(), stepsDone
+                    + node.getStepsFromRoot());
+            FSS.step(action);
+            State newState = FSS.getCurrentState();
             Node child = node.childWithStateAction(newState, action);
 
             if (child == null) {
-                Node newNode = new Node(newState);
+                Node newNode = new Node(newState, FSS.getSteps());
                 newNode.setParentNodeAndAction(node, action);
                 node.addChildNode(newNode);
 
@@ -81,11 +86,7 @@ public class MCTS {
             node = child;
         }
 
-        return new Node(null);
-    }
-
-    private State simulateNextState(State currentState, Action action) {
-        return null;
+        return node;
     }
 
     /*

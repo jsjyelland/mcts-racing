@@ -13,13 +13,16 @@ public class Node {
 
     private State state;
 
+    private int stepsFromRoot;
+
     // Number of times this node has been visited in the MCTS search
     private int visits;
     // Number of times a simulation has resulted in a win from this node.
     private int wins;
 
-    public Node(State state) {
+    public Node(State state, int stepsFromRoot) {
         this.state = state;
+        this.stepsFromRoot = stepsFromRoot;
         childNodes = new ArrayList<>();
         parentNode = null;
         visits = 0;
@@ -68,6 +71,10 @@ public class Node {
 
     public int getWins() {
         return wins;
+    }
+
+    public int getStepsFromRoot() {
+        return stepsFromRoot;
     }
 
     /**
