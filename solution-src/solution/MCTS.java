@@ -1,13 +1,9 @@
 package solution;
 
-import problem.Action;
-import problem.ProblemSpec;
+import problem.*;
 import simulator.State;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class MCTS {
     private ProblemSpec problemSpec;
