@@ -12,7 +12,7 @@ public class Node {
 
     private State state;
 
-    private Node(State state) {
+    public Node(State state) {
         this.state = state;
         childNodes = new ArrayList<>();
         parentNode = null;
