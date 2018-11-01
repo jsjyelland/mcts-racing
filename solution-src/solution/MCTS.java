@@ -5,6 +5,8 @@ import problem.ProblemSpec;
 import simulator.State;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MCTS {
 
@@ -84,8 +86,44 @@ public class MCTS {
      * Returns the approximately optimal action from the root node.
      */
     private Action bestActionFromFinishedTree() {
-        // TODO
-        return new Action(null);
+        // A map of action texts to one such action object (to avoid having to
+        // go from text->Action manually)
+        HashMap<String, Action> textActions = new HashMap<>();
+        // A map of action texts to their resulting nodes
+        HashMap<String, ArrayList<Node>> textNodes = new HashMap<>();
+        for (Action action: validActionsDiscretized) {
+            for (Node node: root.getChildNodes()) {
+                // Action.text is unique: equal text <=> equal actions
+                if (node.getParentAction().getText().equals(action.getText())) {
+                    textNodes.putIfAbsent(action.getText(), new ArrayList<>());
+                    textNodes.get(action.getText()).add(node);
+                    textActions.put(action.getText(), action);
+                }
+            }
+        }
+        // A map of mean success (results/visits) to their action texts
+        HashMap<Double, String> meanTexts = new HashMap<>();
+        // highest seen mean
+        double maxMean = 0;
+        for (Map.Entry<String, ArrayList<Node>> entry : textNodes
+                .entrySet()) {
+            String text = entry.getKey();
+            int resultSum = 0;
+            int visitSum = 0;
+            for (Node node: entry.getValue()) {
+                resultSum += node.getWins();
+                visitSum += node.getVisits();
+            }
+            double mean = (double) resultSum / (double) visitSum;
+            meanTexts.put(mean, text);
+            if (mean > maxMean) {
+                maxMean = mean;
+            }
+        }
+
+        // Get the action text with the highest seen mean and convert it back
+        // to an Action, then return.
+        return textActions.get(meanTexts.get(maxMean));
     }
 
     /*

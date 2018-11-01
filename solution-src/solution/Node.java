@@ -25,22 +25,6 @@ public class Node {
         wins = 0;
     }
 
-    public Node getParentNode() {
-        return parentNode;
-    }
-
-    public Action getParentAction() {
-        return parentAction;
-    }
-
-    public ArrayList<Node> getChildNodes() {
-        return childNodes;
-    }
-
-    public State getState() {
-        return state;
-    }
-
     public void setParentNodeAndAction(Node parentNode, Action parentAction) {
         this.parentNode = parentNode;
         this.parentAction = parentAction;
@@ -59,4 +43,29 @@ public class Node {
         visits += 1;
         wins += result;
     }
+
+    public Node getParentNode() {
+        return parentNode;
+    }
+
+    public Action getParentAction() {
+        return parentAction;
+    }
+
+    public ArrayList<Node> getChildNodes() {
+        return childNodes;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
 }
