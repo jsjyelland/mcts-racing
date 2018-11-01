@@ -81,11 +81,53 @@ public class Node {
      */
     public Node childWithStateAction(State state, Action action) {
         for (Node child : childNodes) {
-            if (child.getState().equals(state) && child.getParentAction().equals(action)) {
+            if (statesEqual(state, child.getState()) && actionsEqual(child.getParentAction(), action)) {
                 return child;
             }
         }
 
         return null;
+    }
+
+    /**
+     * Get the number of times an action has been visited (simulated) from this
+     * node
+     *
+     * @param action the action
+     *
+     * @return the number of visits
+     */
+    public int getActionVisits(Action action) {
+        int visitSum = 0;
+
+        for (Node child : childNodes) {
+            if (actionsEqual(action, child.getParentAction())) {
+                visitSum += child.getVisits();
+            }
+        }
+
+        return visitSum;
+    }
+
+    public int getActionWins(Action action) {
+        int winSum = 0;
+
+        for (Node child : childNodes) {
+            if (actionsEqual(action, child.getParentAction())) {
+                winSum += child.getWins();
+            }
+        }
+
+        return winSum;
+    }
+
+    private boolean statesEqual(State state1, State state2) {
+        return state1.toString().equals(state2.toString()) &&
+                (state1.isInBreakdownCondition() == state2.isInBreakdownCondition()) &&
+                (state1.isInSlipCondition() == state2.isInSlipCondition());
+    }
+
+    private boolean actionsEqual(Action action1, Action action2) {
+        return action1.getText().equals(action2.getText());
     }
 }

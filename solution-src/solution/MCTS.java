@@ -93,8 +93,17 @@ public class MCTS {
      * confidence bound for trees) method.
      */
     private Action selectBestAction(Node node) {
-        // TODO
-        return null;
+        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> UCTValue(c, node)));
+    }
+
+    /*
+     * The UCT value of an action and a parent node
+     */
+    private double UCTValue(Action action, Node parentNode) {
+        double actionVisits = (double)parentNode.getActionVisits(action);
+
+        return (double)parentNode.getActionWins(action) / actionVisits +
+                Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
     }
 
     /*
