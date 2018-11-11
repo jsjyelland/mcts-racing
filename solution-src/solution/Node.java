@@ -18,7 +18,7 @@ public class Node {
     // Number of times this node has been visited in the MCTS search
     private int visits;
     // Number of times a simulation has resulted in a win from this node.
-    private int wins;
+    private double reward;
 
     public Node(State state, int stepsFromRoot) {
         this.state = state;
@@ -26,7 +26,7 @@ public class Node {
         childNodes = new ArrayList<>();
         parentNode = null;
         visits = 0;
-        wins = 0;
+        reward = 0;
     }
 
     public void setParentNodeAndAction(Node parentNode, Action parentAction) {
@@ -44,9 +44,9 @@ public class Node {
      *
      * @param result the result of a random playout from this node, 0 or 1.
      */
-    public void addVisit(int result) {
+    public void addVisit(double result) {
         visits += 1;
-        wins += result;
+        reward += result;
     }
 
     public Node getParentNode() {
@@ -69,8 +69,8 @@ public class Node {
         return visits;
     }
 
-    public int getWins() {
-        return wins;
+    public double getReward() {
+        return reward;
     }
 
     public int getStepsFromRoot() {
@@ -116,16 +116,16 @@ public class Node {
         return visitSum;
     }
 
-    public int getActionWins(Action action) {
-        int winSum = 0;
+    public int getActionReward(Action action) {
+        int rewardSum = 0;
 
         for (Node child : childNodes) {
             if (actionsEqual(action, child.getParentAction())) {
-                winSum += child.getWins();
+                rewardSum += child.getReward();
             }
         }
 
-        return winSum;
+        return rewardSum;
     }
 
     private boolean statesEqual(State state1, State state2) {

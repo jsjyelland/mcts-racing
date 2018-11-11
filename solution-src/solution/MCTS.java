@@ -6,6 +6,10 @@ import simulator.State;
 import java.util.*;
 
 public class MCTS {
+    private static final int WIN_BONUS = 1;
+    private static final int SPEED_MULTIPLIER = 1;
+    private static final int DISTANCE_MULTIPLIER = 1;
+
     private ProblemSpec problemSpec;
 
     private Node root;
@@ -50,7 +54,7 @@ public class MCTS {
         // is reached
         while (System.currentTimeMillis() < startTime + timeLimit) {
             Node newNode = selectAndExpandNewNode();
-            int randomPlayout = simulateRandomPlayout(newNode);
+            double randomPlayout = simulateRandomPlayout(newNode);
             backPropagate(newNode, randomPlayout);
         }
 
@@ -103,7 +107,7 @@ public class MCTS {
     private double UCTValue(Action action, Node parentNode) {
         double actionVisits = (double)parentNode.getActionVisits(action);
 
-        return (double)parentNode.getActionWins(action) / actionVisits +
+        return (double)parentNode.getActionReward(action) / actionVisits +
                 Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
     }
 
@@ -111,30 +115,36 @@ public class MCTS {
      * Simulates a random playout from leaf Node node. Returns 1 if the playout
      * is a win, otherwise 0.
      */
-    private int simulateRandomPlayout(Node node) {
-        int stepCounter = 0;
+    private double simulateRandomPlayout(Node node) {
         State playoutState = node.getState().copyState();
         FromStateSimulator FSS = new FromStateSimulator(problemSpec);
         FSS.setStartState(playoutState, stepsDone);
         int status = FromStateSimulator.IN_PROGRESS;
         while (status == FromStateSimulator.IN_PROGRESS) {
-            int actionIndex = randomInt(0, validActionsDiscretized.size());
-            Action action = validActionsDiscretized.get(actionIndex);
+            Action action = selectRandomAction();
             status = FSS.step(action);
         }
         if (status == FromStateSimulator.WIN) {
-            return 1;
+            return WIN_BONUS + SPEED_MULTIPLIER * (problemSpec.getMaxT() - FSS.getSteps()) / (double)problemSpec.getMaxT();
         } else {
             // The simulation was a loss
-            return 0;
+            return DISTANCE_MULTIPLIER * FSS.getCurrentState().getPos() / (double) problemSpec.getN();
         }
+    }
+
+    /*
+     * Selects a random action for the random playout
+     */
+    private Action selectRandomAction() {
+        int actionIndex = randomInt(0, validActionsDiscretized.size());
+        return validActionsDiscretized.get(actionIndex);
     }
 
     /*
      * Updates the visit and win amounts on all parents nodes from the leaf
      * node Node to the root node.
      */
-    private void backPropagate(Node node, int playoutResult) {
+    private void backPropagate(Node node, double playoutResult) {
         while (node != null) {
             node.addVisit(playoutResult);
             node = node.getParentNode();
@@ -167,10 +177,10 @@ public class MCTS {
         for (Map.Entry<String, ArrayList<Node>> entry : textNodes
                 .entrySet()) {
             String text = entry.getKey();
-            int resultSum = 0;
+            double resultSum = 0;
             int visitSum = 0;
             for (Node node: entry.getValue()) {
-                resultSum += node.getWins();
+                resultSum += node.getReward();
                 visitSum += node.getVisits();
             }
             double mean = (double) resultSum / (double) visitSum;
@@ -269,6 +279,7 @@ public class MCTS {
         }
     }
 
+    // Random int from min to max (inclusive I think)
     private static int randomInt(int min, int max) {
 
         if (min >= max) {
