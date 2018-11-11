@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     // The length of time the MCTS search is allowed to run at each step.
-    private static final int STEP_TIME_LIMIT = 15000;
+    static final int STEP_TIME_LIMIT = 15000;
     // Since the MCTS will actually take slightly longer than the time limit,
     // add a small buffer
     private static final int STEP_TIME_BUFFER = 100;
@@ -30,6 +30,17 @@ public class Main {
         System.out.println(ps.toString());
 
         Simulator sim = new Simulator(ps, outputFile);
+
+        boolean solved = simulateProblem(ps, sim, timeLimit);
+        if (solved) {
+            System.out.println("Simulation successful.");
+        } else {
+            System.out.println("Simulation failed.");
+        }
+
+    }
+
+    public static boolean simulateProblem(ProblemSpec ps, Simulator sim, int timeLimit) {
         State state = sim.reset();
         int stepsDone = 0;
 
@@ -39,14 +50,10 @@ public class Main {
             Action action = mcts.getBestAction();
             state = sim.step(action);
             if (sim.isGoalState(state)) {
-                System.out.println("Simulation successful.");
-                break;
+                return true;
             }
             stepsDone++;
         }
-
-        if (state == null) {
-            System.out.println("Simulation failed.");
-        }
+        return false;
     }
 }
