@@ -107,6 +107,10 @@ public class MCTS {
     private double UCTValue(Action action, Node parentNode) {
         double actionVisits = (double)parentNode.getActionVisits(action);
 
+//        if (actionVisits == 0) {
+//            return 0;
+//        }
+
         return (double)parentNode.getActionReward(action) / actionVisits +
                 Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
     }
@@ -136,8 +140,71 @@ public class MCTS {
      * Selects a random action for the random playout
      */
     private Action selectRandomAction() {
-        int actionIndex = randomInt(0, validActionsDiscretized.size());
-        return validActionsDiscretized.get(actionIndex);
+        int fuel;
+        String car, driver;
+        Tire tire;
+        TirePressure pressure;
+
+        List<TirePressure> tirePressures = Arrays.asList(
+                TirePressure.FIFTY_PERCENT,
+                TirePressure.SEVENTY_FIVE_PERCENT,
+                TirePressure.ONE_HUNDRED_PERCENT
+        );
+
+        List<Integer> fuelLevels = new ArrayList<>();
+        int fuelInterval = ProblemSpec.FUEL_MAX / FUEL_DISCRETE_INTERVALS;
+
+        for (int i = 0; i < FUEL_DISCRETE_INTERVALS; i++) {
+            fuelLevels.add(fuelInterval * i);
+        }
+
+        List<ActionType> validActionTypes = problemSpec.getLevel().getAvailableActions();
+        ActionType actionType = getRandomElement(validActionTypes);
+        Action action;
+
+        switch (actionType.getActionNo()) {
+            case 1:
+                action = new Action(actionType);
+                break;
+            case 2:
+                car = getRandomElement(problemSpec.getCarOrder());
+                action = new Action(actionType, car);
+                break;
+            case 3:
+                driver = getRandomElement(problemSpec.getDriverOrder());
+                action = new Action(actionType, driver);
+                break;
+            case 4:
+                tire = getRandomElement(problemSpec.getTireOrder());
+                action = new Action(actionType, tire);
+                break;
+            case 5:
+                fuel = getRandomElement(fuelLevels);
+                action = new Action(actionType, fuel);
+                break;
+            case 6:
+                pressure = getRandomElement(tirePressures);
+                action = new Action(actionType, pressure);
+                break;
+            case 7:
+                car = getRandomElement(problemSpec.getCarOrder());
+                driver = getRandomElement(problemSpec.getDriverOrder());
+                action = new Action(actionType, car, driver);
+                break;
+            default:
+                // A8
+                tire = getRandomElement(problemSpec.getTireOrder());
+                fuel = getRandomElement(fuelLevels);
+                pressure = getRandomElement(tirePressures);
+                action = new Action(actionType, tire, fuel, pressure);
+        }
+
+        return action;
+
+    }
+
+    private <T> T getRandomElement(List<T> list) {
+        return list.get(randomInt(0, list.size()));
     }
 
     /*
@@ -279,7 +346,7 @@ public class MCTS {
         }
     }
 
-    // Random int from min to max (inclusive I think)
+    // Random int from min to max (inclusive min, exclusive max)
     private static int randomInt(int min, int max) {
 
         if (min >= max) {

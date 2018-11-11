@@ -17,7 +17,7 @@ public class FromStateSimulator {
     private int steps;
     /** Whether to print progress messages or not
      * Feel free to change this if you don't want messages printed **/
-    private boolean verbose = true;
+    private boolean verbose = false;
 
 
     /**
