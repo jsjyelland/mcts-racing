@@ -111,7 +111,7 @@ public class MCTS {
 //            return 0;
 //        }
 
-        return (double)parentNode.getActionReward(action) / actionVisits +
+        return parentNode.getActionReward(action) / actionVisits +
                 Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
     }
 
@@ -222,44 +222,47 @@ public class MCTS {
      * Returns the approximately optimal action from the root node.
      */
     private Action bestActionFromFinishedTree() {
-        // A map of action texts to one such action object (to avoid having to
-        // go from text->Action manually)
-        HashMap<String, Action> textActions = new HashMap<>();
-        // A map of action texts to their resulting nodes
-        HashMap<String, ArrayList<Node>> textNodes = new HashMap<>();
-        for (Action action: validActionsDiscretized) {
-            for (Node node: root.getChildNodes()) {
-                // Action.text is unique: equal text <=> equal actions
-                if (node.getParentAction().getText().equals(action.getText())) {
-                    textNodes.putIfAbsent(action.getText(), new ArrayList<>());
-                    textNodes.get(action.getText()).add(node);
-                    textActions.put(action.getText(), action);
-                }
-            }
-        }
-        // A map of mean success (results/visits) to their action texts
-        HashMap<Double, String> meanTexts = new HashMap<>();
-        // highest seen mean
-        double maxMean = 0;
-        for (Map.Entry<String, ArrayList<Node>> entry : textNodes
-                .entrySet()) {
-            String text = entry.getKey();
-            double resultSum = 0;
-            int visitSum = 0;
-            for (Node node: entry.getValue()) {
-                resultSum += node.getReward();
-                visitSum += node.getVisits();
-            }
-            double mean = (double) resultSum / (double) visitSum;
-            meanTexts.put(mean, text);
-            if (mean > maxMean) {
-                maxMean = mean;
-            }
-        }
+//        // A map of action texts to one such action object (to avoid having to
+//        // go from text->Action manually)
+//        HashMap<String, Action> textActions = new HashMap<>();
+//        // A map of action texts to their resulting nodes
+//        HashMap<String, ArrayList<Node>> textNodes = new HashMap<>();
+//        for (Action action: validActionsDiscretized) {
+//            for (Node node: root.getChildNodes()) {
+//                // Action.text is unique: equal text <=> equal actions
+//                if (node.getParentAction().getText().equals(action.getText())) {
+//                    textNodes.putIfAbsent(action.getText(), new ArrayList<>());
+//                    textNodes.get(action.getText()).add(node);
+//                    textActions.put(action.getText(), action);
+//                }
+//            }
+//        }
+//        // A map of mean success (results/visits) to their action texts
+//        HashMap<Double, String> meanTexts = new HashMap<>();
+//        // highest seen mean
+//        double maxMean = 0;
+//        for (Map.Entry<String, ArrayList<Node>> entry : textNodes
+//                .entrySet()) {
+//            String text = entry.getKey();
+//            double resultSum = 0;
+//            int visitSum = 0;
+//            for (Node node: entry.getValue()) {
+//                resultSum += node.getReward();
+//                visitSum += node.getVisits();
+//            }
+//            double mean = (double) resultSum / (double) visitSum;
+//            meanTexts.put(mean, text);
+//            if (mean > maxMean) {
+//                maxMean = mean;
+//            }
+//        }
+//
+//        // Get the action text with the highest seen mean and convert it back
+//        // to an Action, then return.
+//        return textActions.get(meanTexts.get(maxMean));
 
-        // Get the action text with the highest seen mean and convert it back
-        // to an Action, then return.
-        return textActions.get(meanTexts.get(maxMean));
+
+        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> root.getActionReward(c) / (double)root.getActionVisits(c)));
     }
 
     /*
