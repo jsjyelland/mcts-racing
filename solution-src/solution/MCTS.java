@@ -5,46 +5,80 @@ import simulator.State;
 
 import java.util.*;
 
+/**
+ * Monte Carlo Tree Search
+ */
 public class MCTS {
+    /**
+     * Reward for a winning a simulation
+     */
     private static final int WIN_BONUS = 1;
+
+    /**
+     * Reward multiplier for winning a simulation faster
+     */
     private static final int SPEED_MULTIPLIER = 1;
+
+    /**
+     * Reward multiplier for a simulation travelling a number of cells
+     */
     private static final int DISTANCE_MULTIPLIER = 1;
 
+    /**
+     * The problem specification
+     */
     private ProblemSpec problemSpec;
 
+    /**
+     * Root node of the tree
+     */
     private Node root;
 
+    /**
+     * Number of time steps completed
+     */
     private int stepsDone;
 
-    // The time limit to search for each action.
+    /**
+     * The time limit to search for each action.
+     */
     private int timeLimit;
 
-    // All possible actions given this problemSpec
+    /**
+     * All possible actions given this problemSpec
+     */
     private ArrayList<Action> validActionsDiscretized;
 
+    /**
+     * Number of discrete levels of fuel able to be added to the tank
+     */
     private static final int FUEL_DISCRETE_INTERVALS = 6;
 
     /**
      * Initialize the MCTS search object with all required information, and
      * create the list of possible actions
+     *
      * @param problemSpec The specification of the current problem
      * @param startState The start state of this search
      * @param stepsDone The amount of steps done so far
      * @param timeLimit How long is allocated to this search per action. This
-     *                  search will actually take just slightly longer than this
+     * search will actually take just slightly longer than this
      */
     public MCTS(ProblemSpec problemSpec, State startState, int stepsDone,
-                int timeLimit) {
+            int timeLimit) {
         this.problemSpec = problemSpec;
         this.root = new Node(startState, 0);
         this.stepsDone = stepsDone;
         this.timeLimit = timeLimit;
+
+        // Make a list of all the possible actions
         makeValidActionsDiscretized();
     }
 
     /**
      * Executes the MCTS search. Takes slightly longer than timeLimit. Will
      * return the approximately best Action object to perform.
+     *
      * @return the best Action object from the startState.
      */
     public Action getBestAction() {
@@ -64,29 +98,41 @@ public class MCTS {
         return bestActionFromFinishedTree();
     }
 
-    /*
+    /**
      * Decision policy for exploration, returns new leaf Node.
+     *
+     * @return the leaf node added to the tree
      */
     private Node selectAndExpandNewNode() {
+        // Start at the root
         Node node = root;
+
+        // Iterate down the tree until reaching a goal state
         while (node.getState().getPos() < problemSpec.getN()) {
+            // Get the best action from the current node using UCT
             Action action = selectBestAction(node);
+
             // Simulate a single action
             FromStateSimulator FSS = new FromStateSimulator(problemSpec);
             FSS.setStartState(node.getState(), stepsDone
                     + node.getStepsFromRoot());
             FSS.step(action);
             State newState = FSS.getCurrentState();
+
+            // Get the node representing the outcome of the transition
             Node child = node.childWithStateAction(newState, action);
 
+            // If this outcome node has not been added to the tree, add it
             if (child == null) {
                 Node newNode = new Node(newState, FSS.getSteps());
                 newNode.setParentNodeAndAction(node, action);
                 node.addChildNode(newNode);
 
+                // Return this new node
                 return newNode;
             }
 
+            // Now repeat the process using this child node
             node = child;
         }
 
@@ -105,11 +151,7 @@ public class MCTS {
      * The UCT value of an action and a parent node
      */
     private double UCTValue(Action action, Node parentNode) {
-        double actionVisits = (double)parentNode.getActionVisits(action);
-
-//        if (actionVisits == 0) {
-//            return 0;
-//        }
+        double actionVisits = (double) parentNode.getActionVisits(action);
 
         return parentNode.getActionReward(action) / actionVisits +
                 Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
@@ -129,7 +171,7 @@ public class MCTS {
             status = FSS.step(action);
         }
         if (status == FromStateSimulator.WIN) {
-            return WIN_BONUS + SPEED_MULTIPLIER * (problemSpec.getMaxT() - FSS.getSteps()) / (double)problemSpec.getMaxT();
+            return WIN_BONUS + SPEED_MULTIPLIER * (problemSpec.getMaxT() - FSS.getSteps()) / (double) problemSpec.getMaxT();
         } else {
             // The simulation was a loss
             return DISTANCE_MULTIPLIER * FSS.getCurrentState().getPos() / (double) problemSpec.getN();
@@ -222,47 +264,7 @@ public class MCTS {
      * Returns the approximately optimal action from the root node.
      */
     private Action bestActionFromFinishedTree() {
-//        // A map of action texts to one such action object (to avoid having to
-//        // go from text->Action manually)
-//        HashMap<String, Action> textActions = new HashMap<>();
-//        // A map of action texts to their resulting nodes
-//        HashMap<String, ArrayList<Node>> textNodes = new HashMap<>();
-//        for (Action action: validActionsDiscretized) {
-//            for (Node node: root.getChildNodes()) {
-//                // Action.text is unique: equal text <=> equal actions
-//                if (node.getParentAction().getText().equals(action.getText())) {
-//                    textNodes.putIfAbsent(action.getText(), new ArrayList<>());
-//                    textNodes.get(action.getText()).add(node);
-//                    textActions.put(action.getText(), action);
-//                }
-//            }
-//        }
-//        // A map of mean success (results/visits) to their action texts
-//        HashMap<Double, String> meanTexts = new HashMap<>();
-//        // highest seen mean
-//        double maxMean = 0;
-//        for (Map.Entry<String, ArrayList<Node>> entry : textNodes
-//                .entrySet()) {
-//            String text = entry.getKey();
-//            double resultSum = 0;
-//            int visitSum = 0;
-//            for (Node node: entry.getValue()) {
-//                resultSum += node.getReward();
-//                visitSum += node.getVisits();
-//            }
-//            double mean = (double) resultSum / (double) visitSum;
-//            meanTexts.put(mean, text);
-//            if (mean > maxMean) {
-//                maxMean = mean;
-//            }
-//        }
-//
-//        // Get the action text with the highest seen mean and convert it back
-//        // to an Action, then return.
-//        return textActions.get(meanTexts.get(maxMean));
-
-
-        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> root.getActionReward(c) / (double)root.getActionVisits(c)));
+        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> root.getActionReward(c) / (double) root.getActionVisits(c)));
     }
 
     /*
@@ -287,7 +289,7 @@ public class MCTS {
         }
 
         for (ActionType actionType : actionTypes) {
-            switch(actionType.getActionNo()) {
+            switch (actionType.getActionNo()) {
                 case 1:
                     validActionsDiscretized.add(new Action(actionType));
                     break;

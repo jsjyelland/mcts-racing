@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82f76ca8-6ac2-4db5-9a79-40e514bb0a01" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/yella.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/level_1/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/level_1/output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/level_4/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/level_4/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/level_5/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/level_5/output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solution-src/solution/MCTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/solution-src/solution/MCTS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/supportcode" beforeDir="false" afterPath="$PROJECT_DIR$/supportcode" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supportcode/src/problem/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/supportcode/src/problem/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supportcode/src/simulator/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/supportcode/src/simulator/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supportcode/test/SimulatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/supportcode/test/SimulatorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,119 +89,51 @@
     <session id="-2054609709">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3990" />
+          <entry key="java" value="5246" />
           <entry key="txt" value="93" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3990" />
+          <entry key="JAVA" value="5246" />
           <entry key="PLAIN_TEXT" value="93" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="20" />
+          <entry key="java" value="23" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="20" />
+          <entry key="JAVA" value="23" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solution-src/solution/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/solution-src/solution/MCTS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2227">
-              <caret line="134" column="92" selection-start-line="134" selection-start-column="92" selection-end-line="134" selection-end-column="92" />
+            <state relative-caret-position="374">
+              <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/level_5/input_official_2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solution-src/solution/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1707#1708#0" expanded="true" />
-                <element signature="e#1743#1744#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/level_4/input3.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/supportcode/src/problem/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/level_4/input_official_1.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/examples/level_4/output.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/level_5/input_official_1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/level_1/input_official_2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -227,6 +161,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -248,9 +183,10 @@
         <option value="$PROJECT_DIR$/examples/level_4/input_official_2.txt" />
         <option value="$PROJECT_DIR$/solution-src/solution/ProblemTester.java" />
         <option value="$PROJECT_DIR$/examples/level_5/input_official_2.txt" />
-        <option value="$PROJECT_DIR$/solution-src/solution/MCTS.java" />
         <option value="$PROJECT_DIR$/solution-src/solution/Node.java" />
         <option value="$PROJECT_DIR$/examples/level_4/output.txt" />
+        <option value="$PROJECT_DIR$/examples/level_5/output.txt" />
+        <option value="$PROJECT_DIR$/solution-src/solution/MCTS.java" />
       </list>
     </option>
   </component>
@@ -271,115 +207,124 @@
     <option name="width" value="854" />
     <option name="height" value="1017" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
               <item name="level_1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
               <item name="level_2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
               <item name="level_3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
               <item name="level_4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
               <item name="level_5" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="solution-src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="solution-src" type="462c0819:PsiDirectoryNode" />
               <item name="solution" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="supportcode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="supportcode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="supportcode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="problem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name="comp3702-assigment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp3702-assigment2" type="462c0819:PsiDirectoryNode" />
               <item name="supportcode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="simulator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment2" type="462c0819:PsiDirectoryNode" />
-              <item name="supportcode" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="assignment2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542021492652" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542028303627" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -399,7 +344,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="solution.Main" />
       <module name="comp3702-assignment2" />
       <option name="PROGRAM_PARAMETERS" value="examples/level_5/input_official_2.txt examples/level_5/output.txt 15000" />
@@ -433,7 +378,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.ProblemTester" />
         <item itemvalue="Application.Main" />
       </list>
@@ -449,6 +393,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541050998235</updated>
+      <workItem from="1542021826991" duration="6330000" />
     </task>
     <task id="LOCAL-00001" summary="Discretization of all possible actions, selection &amp; exploration functions">
       <created>1541079863871</created>
@@ -468,22 +413,22 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7894000" />
+    <option name="totallyTimeSpent" value="14464000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13080685" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.132287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -492,9 +437,10 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3295964" />
-      <window_info anchor="bottom" id="Run with VisualVM" order="11" weight="0.329718" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="11" weight="0.3295964" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
+      <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -505,6 +451,9 @@
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32995737" />
     </layout>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -512,21 +461,6 @@
     <MESSAGE value="Discretization of all possible actions, selection &amp; exploration functions" />
     <MESSAGE value="Merge" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/solution-src/solution/MCTS.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/WrongNodeTypeException.java" />
@@ -583,9 +517,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/level_5/output_lvl5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_5/output_lvl5.txt" />
     <entry file="file://$PROJECT_DIR$/supportcode/src/problem/Action.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
@@ -608,13 +540,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/level_1/_outputlvl1.txt" />
-    <entry file="file://$PROJECT_DIR$/examples/level_1/output_lvl1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_1/output_lvl1.txt" />
     <entry file="file://$PROJECT_DIR$/supportcode/src/problem/Level.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
@@ -651,9 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/level_5/output.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/supportcode/test/SimulatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
@@ -674,49 +597,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supportcode/src/problem/ProblemSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding>
-            <element signature="e#14647#14648#0" expanded="true" />
-            <element signature="e#14686#14687#0" expanded="true" />
-            <element signature="e#14778#14779#0" expanded="true" />
-            <element signature="e#14802#14803#0" expanded="true" />
-            <element signature="e#15015#15016#0" expanded="true" />
-            <element signature="e#15040#15041#0" expanded="true" />
-            <element signature="e#15243#15244#0" expanded="true" />
-            <element signature="e#15274#15275#0" expanded="true" />
-            <element signature="e#15536#15537#0" expanded="true" />
-            <element signature="e#15570#15571#0" expanded="true" />
-            <element signature="e#15731#15732#0" expanded="true" />
-            <element signature="e#15763#15764#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/supportcode/src/simulator/Simulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/level_1/outputlvl1.txt" />
-    <entry file="file://$PROJECT_DIR$/supportcode/src/simulator/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8758#8759#0" expanded="true" />
-            <element signature="e#8784#8785#0" expanded="true" />
-            <element signature="e#9096#9097#0" expanded="true" />
-            <element signature="e#9131#9132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/level_4/input2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -724,16 +605,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/level_2/outputlvl2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/level_2/output_lvl2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_2/outputlvl2.txt" />
+    <entry file="file://$PROJECT_DIR$/examples/level_2/output_lvl2.txt" />
     <entry file="file://$PROJECT_DIR$/examples/level_2/input_official_1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -755,39 +628,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solution-src/solution/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solution-src/solution/MCTS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="134" column="92" selection-start-line="134" selection-start-column="92" selection-end-line="134" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/level_5/input_official_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/solution-src/solution/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
+        <state relative-caret-position="629">
+          <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1641#1642#0" expanded="true" />
+            <element signature="e#1670#1671#0" expanded="true" />
             <element signature="e#1707#1708#0" expanded="true" />
             <element signature="e#1743#1744#0" expanded="true" />
           </folding>
@@ -825,8 +675,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/supportcode/src/problem/ProblemSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="963">
+          <caret line="433" column="15" selection-start-line="433" selection-start-column="15" selection-end-line="433" selection-end-column="15" />
+          <folding>
+            <element signature="e#14647#14648#0" expanded="true" />
+            <element signature="e#14686#14687#0" expanded="true" />
+            <element signature="e#14778#14779#0" expanded="true" />
+            <element signature="e#14802#14803#0" expanded="true" />
+            <element signature="e#14883#14884#0" expanded="true" />
+            <element signature="e#14908#14909#0" expanded="true" />
+            <element signature="e#15015#15016#0" expanded="true" />
+            <element signature="e#15040#15041#0" expanded="true" />
+            <element signature="e#15243#15244#0" expanded="true" />
+            <element signature="e#15274#15275#0" expanded="true" />
+            <element signature="e#15536#15537#0" expanded="true" />
+            <element signature="e#15570#15571#0" expanded="true" />
+            <element signature="e#15731#15732#0" expanded="true" />
+            <element signature="e#15763#15764#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supportcode/src/simulator/Simulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="262" column="43" selection-start-line="262" selection-start-column="43" selection-end-line="262" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supportcode/src/simulator/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8758#8759#0" expanded="true" />
+            <element signature="e#8784#8785#0" expanded="true" />
+            <element signature="e#9096#9097#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/examples/level_4/output.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solution-src/solution/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_1/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_5/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="30" lean-forward="true" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/level_5/input_official_2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12053">
+          <caret line="744" column="22" selection-start-line="744" selection-start-column="22" selection-end-line="744" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solution-src/solution/MCTS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
