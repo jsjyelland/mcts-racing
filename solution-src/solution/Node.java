@@ -116,8 +116,8 @@ public class Node {
         return visitSum;
     }
 
-    public int getActionReward(Action action) {
-        int rewardSum = 0;
+    public double getActionReward(Action action) {
+        double rewardSum = 0;
 
         for (Node child : childNodes) {
             if (actionsEqual(action, child.getParentAction())) {
