@@ -3,8 +3,10 @@ package solution;
 import problem.*;
 import simulator.State;
 
+/**
+ * Simulate a playout from a state
+ */
 public class FromStateSimulator {
-
     public static final int IN_PROGRESS = 0;
     public static final int WIN = 1;
     public static final int LOSS = 2;

@@ -12,17 +12,17 @@ public class MCTS {
     /**
      * Reward for a winning a simulation
      */
-    private static final int WIN_BONUS = 1;
+    private static final double WIN_BONUS = 1;
 
     /**
      * Reward multiplier for winning a simulation faster
      */
-    private static final int SPEED_MULTIPLIER = 1;
+    private static final double SPEED_MULTIPLIER = 1;
 
     /**
      * Reward multiplier for a simulation travelling a number of cells
      */
-    private static final int DISTANCE_MULTIPLIER = 1;
+    private static final double DISTANCE_MULTIPLIER = 1;
 
     /**
      * The problem specification
@@ -55,17 +55,16 @@ public class MCTS {
     private static final int FUEL_DISCRETE_INTERVALS = 6;
 
     /**
-     * Initialize the MCTS search object with all required information, and
-     * create the list of possible actions
+     * Initialize the MCTS search object with all required information, and create the list of
+     * possible actions
      *
      * @param problemSpec The specification of the current problem
      * @param startState The start state of this search
      * @param stepsDone The amount of steps done so far
-     * @param timeLimit How long is allocated to this search per action. This
-     * search will actually take just slightly longer than this
+     * @param timeLimit How long is allocated to this search per action. This search will actually
+     * take just slightly longer than this
      */
-    public MCTS(ProblemSpec problemSpec, State startState, int stepsDone,
-            int timeLimit) {
+    public MCTS(ProblemSpec problemSpec, State startState, int stepsDone, int timeLimit) {
         this.problemSpec = problemSpec;
         this.root = new Node(startState, 0);
         this.stepsDone = stepsDone;
@@ -76,8 +75,8 @@ public class MCTS {
     }
 
     /**
-     * Executes the MCTS search. Takes slightly longer than timeLimit. Will
-     * return the approximately best Action object to perform.
+     * Executes the MCTS search. Takes slightly longer than timeLimit. Will return the approximately
+     * best Action object to perform.
      *
      * @return the best Action object from the startState.
      */
@@ -114,8 +113,7 @@ public class MCTS {
 
             // Simulate a single action
             FromStateSimulator FSS = new FromStateSimulator(problemSpec);
-            FSS.setStartState(node.getState(), stepsDone
-                    + node.getStepsFromRoot());
+            FSS.setStartState(node.getState(), stepsDone + node.getStepsFromRoot());
             FSS.step(action);
             State newState = FSS.getCurrentState();
 
@@ -139,16 +137,26 @@ public class MCTS {
         return node;
     }
 
-    /*
-     * Select the best action to perform on a node using the UCT (Upper
-     * confidence bound for trees) method.
+    /**
+     * Select the best action to perform on a node using the UCT (Upper confidence bound for trees)
+     * method.
+     *
+     * @param node the node to select the best action from
+     *
+     * @return the best Action object
      */
     private Action selectBestAction(Node node) {
-        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> UCTValue(c, node)));
+        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> UCTValue(c,
+                node)));
     }
 
-    /*
+    /**
      * The UCT value of an action and a parent node
+     *
+     * @param action the action to calculate the UCT value of
+     * @param parentNode the node which has the action as a child vertex
+     *
+     * @return the UCT value of the action
      */
     private double UCTValue(Action action, Node parentNode) {
         double actionVisits = (double) parentNode.getActionVisits(action);
@@ -157,29 +165,39 @@ public class MCTS {
                 Math.sqrt(2.0 * Math.log(parentNode.getVisits()) / actionVisits);
     }
 
-    /*
-     * Simulates a random playout from leaf Node node. Returns 1 if the playout
-     * is a win, otherwise 0.
+    /**
+     * Simulates a random playout from leaf Node node. Returns 1 if the playout is a win, otherwise
+     * 0.
+     *
+     * @param node the node to simulate the playout from
      */
     private double simulateRandomPlayout(Node node) {
         State playoutState = node.getState().copyState();
         FromStateSimulator FSS = new FromStateSimulator(problemSpec);
         FSS.setStartState(playoutState, stepsDone);
+
         int status = FromStateSimulator.IN_PROGRESS;
+
+        // Simulate until a win or loss
         while (status == FromStateSimulator.IN_PROGRESS) {
             Action action = selectRandomAction();
             status = FSS.step(action);
         }
+
         if (status == FromStateSimulator.WIN) {
-            return WIN_BONUS + SPEED_MULTIPLIER * (problemSpec.getMaxT() - FSS.getSteps()) / (double) problemSpec.getMaxT();
+            return WIN_BONUS + SPEED_MULTIPLIER * (problemSpec.getMaxT() - FSS.getSteps()) /
+                    (double) problemSpec.getMaxT();
         } else {
             // The simulation was a loss
-            return DISTANCE_MULTIPLIER * FSS.getCurrentState().getPos() / (double) problemSpec.getN();
+            return DISTANCE_MULTIPLIER * FSS.getCurrentState().getPos() /
+                    (double) problemSpec.getN();
         }
     }
 
-    /*
+    /**
      * Selects a random action for the random playout
+     *
+     * @return the random action
      */
     private Action selectRandomAction() {
         int fuel;
@@ -187,12 +205,14 @@ public class MCTS {
         Tire tire;
         TirePressure pressure;
 
+        // Possible tire pressures
         List<TirePressure> tirePressures = Arrays.asList(
                 TirePressure.FIFTY_PERCENT,
                 TirePressure.SEVENTY_FIVE_PERCENT,
                 TirePressure.ONE_HUNDRED_PERCENT
         );
 
+        // Possible fuel levels (note that this is an arbitrary discretization)
         List<Integer> fuelLevels = new ArrayList<>();
         int fuelInterval = ProblemSpec.FUEL_MAX / FUEL_DISCRETE_INTERVALS;
 
@@ -204,6 +224,7 @@ public class MCTS {
         ActionType actionType = getRandomElement(validActionTypes);
         Action action;
 
+        // Pick a random action from A1-A8 and then randomize the parameters
         switch (actionType.getActionNo()) {
             case 1:
                 action = new Action(actionType);
@@ -245,13 +266,24 @@ public class MCTS {
 
     }
 
+    /**
+     * Helper function to get a random element from a list
+     *
+     * @param list the list
+     * @param <T> the type of the list
+     *
+     * @return the random element
+     */
     private <T> T getRandomElement(List<T> list) {
         return list.get(randomInt(0, list.size()));
     }
 
-    /*
-     * Updates the visit and win amounts on all parents nodes from the leaf
-     * node Node to the root node.
+    /**
+     * Updates the visit and win amounts on all parents nodes from the leaf node Node to the root
+     * node.
+     *
+     * @param node the node to begin backpropagation from
+     * @param playoutResult the reward of the playout
      */
     private void backPropagate(Node node, double playoutResult) {
         while (node != null) {
@@ -260,14 +292,17 @@ public class MCTS {
         }
     }
 
-    /*
-     * Returns the approximately optimal action from the root node.
+    /**
+     * Get the approximately optimal action from the root node.
+     *
+     * @return the best action from the root based on it's win / simulation ratio
      */
     private Action bestActionFromFinishedTree() {
-        return Collections.max(validActionsDiscretized, Comparator.comparing(c -> root.getActionReward(c) / (double) root.getActionVisits(c)));
+        return Collections.max(validActionsDiscretized, Comparator.comparing(
+                c -> root.getActionReward(c) / (double) root.getActionVisits(c)));
     }
 
-    /*
+    /**
      * Creates the list of valid actions (discretized) from the problem spec.
      */
     private void makeValidActionsDiscretized() {
@@ -275,12 +310,14 @@ public class MCTS {
 
         List<ActionType> actionTypes = problemSpec.getLevel().getAvailableActions();
 
+        // Valid tire pressures
         List<TirePressure> tirePressures = Arrays.asList(
                 TirePressure.FIFTY_PERCENT,
                 TirePressure.SEVENTY_FIVE_PERCENT,
                 TirePressure.ONE_HUNDRED_PERCENT
         );
 
+        // Valid fuel levels (note that this is an arbitrary discretization)
         List<Integer> fuelLevels = new ArrayList<>();
         int fuelInterval = ProblemSpec.FUEL_MAX / FUEL_DISCRETE_INTERVALS;
 
@@ -288,6 +325,7 @@ public class MCTS {
             fuelLevels.add(fuelInterval * i);
         }
 
+        // Go through A1-A8 and add all possible combinations of the parameters
         for (ActionType actionType : actionTypes) {
             switch (actionType.getActionNo()) {
                 case 1:
@@ -341,7 +379,8 @@ public class MCTS {
                     for (TirePressure pressure : tirePressures) {
                         for (int fuel : fuelLevels) {
                             for (Tire tire : problemSpec.getTireOrder()) {
-                                validActionsDiscretized.add(new Action(actionType, tire, fuel, pressure));
+                                validActionsDiscretized.add(new Action(actionType, tire, fuel,
+                                        pressure));
                             }
                         }
                     }
@@ -351,14 +390,20 @@ public class MCTS {
         }
     }
 
-    // Random int from min to max (inclusive min, exclusive max)
+    /**
+     * Helper function for generating a random int from min to max (inclusive min, exclusive max)
+     *
+     * @param min the lower bound of the random range (inclusive)
+     * @param max the upper bound of the random range (exclusive)
+     *
+     * @return the random number
+     */
     private static int randomInt(int min, int max) {
-
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
 
         Random r = new Random();
-        return r.nextInt((max - min)) + min;
+        return r.nextInt(max - min) + min;
     }
 }
